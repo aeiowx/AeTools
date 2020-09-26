@@ -1,0 +1,34 @@
+PATH=$PATH:/worksp/tools/
+
+# mark
+#书签保存的目录
+export MARKPATH=$HOME/.marks
+export MARKDEFAULT=$HOME
+
+function g {
+    local m=$1
+    if [ "$m" = "" ]; then m=$MARKDEFAULT; fi
+    cd -P "$MARKPATH/$m" 2>/dev/null || echo "No such mark: $m"
+}
+function mk {
+    mkdir -p "$MARKPATH"
+    local m=$1
+    if [ "$m" = "" ]; then m=$MARKDEFAULT; fi
+    rm -f "$MARKPATH/$m"
+    ln -s "$(pwd)" "$MARKPATH/$m"  
+}
+function unmk {
+    local m=$1
+    if [ "$m" = "" ]; then m=$MARKDEFAULT; fi
+    rm -i "$MARKPATH/$m"
+}
+function lsmk {
+    ls -l "$MARKPATH" | grep ^l | awk '{print $9,$10,$11}'
+}
+_completemarks() {
+    local curw=${COMP_WORDS[COMP_CWORD]} 
+    local wordlist=$(find "$MARKPATH" -type l -printf "%f\n")
+    COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
+    return 0
+}
+complete -F _completemarks g unmark
