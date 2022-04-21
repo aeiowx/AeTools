@@ -1,2 +1,2 @@
 # AeTools
-Some simple and useful scripts of Alex.
+Some simple and useful scripts of aeiowx.
