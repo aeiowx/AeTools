@@ -1,4 +1,4 @@
-PATH=$PATH:/worksp/tools/
+PATH=$PATH:~/worksp/tools/
 
 # mark
 #书签保存的目录
