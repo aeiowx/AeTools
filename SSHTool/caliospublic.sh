@@ -7,17 +7,16 @@ else
 fi
 
 user=root
-ip=116.62.46.72
+ip=$your_server_ip
 
 ssh $user@$ip -p $port
-
 
 #expect version
 ###!/usr/bin/expect
 #set timeout 3
 #set user root
-#set ip 116.62.46.72
+#set ip $ip
 #spawn ssh ${user}@${ip}
 ##expect "password:"
-##send "123456\r"
+##send "$your_passwd\r"
 #interact
